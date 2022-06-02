@@ -1,23 +1,22 @@
 //Collection of File I/O function
 
-
 #ifndef __function_h__
 #define __function_h__
 
-#define MAX_RAND_NUM 500
+#define MAX_RAND_NUM 1000
 #define MAX_STR 1000
 #define MAX_PRINT 1000
-#define MAX_PRINT_IDX 498
+#define MAX_PRINT_IDX 500
 #define _CRT_SECURE_NO_WARNINGS
 
 struct ARR {
     int arr[MAX_RAND_NUM];
     int idx[MAX_RAND_NUM];
 };
-/*struct MINUSARR {
+struct MINUSARR {
     int minusarr[MAX_RAND_NUM];
     int idx[MAX_RAND_NUM];
-};*/
+};
 struct DOUBLEARR {
     double doublearr[MAX_RAND_NUM];
     int idx[MAX_RAND_NUM];
@@ -26,24 +25,6 @@ struct CODE_ARR {
     char code_str[MAX_RAND_NUM][6];
     int idx[MAX_RAND_NUM];
 };
-
-//struct INPUT_ARR {
-//    int arr;
-//    int idx;
-//};
-///*struct INPUT_MINUSARR {
-//    int minusarr;
-//    int idx;
-//};*/
-//struct  INPUT_DOUBLEARR {
-//    double doublearr;
-//    int idx;
-//};
-//struct  INPUT_CODE_ARR {
-//    char code_str[6];
-//    int idx;
-//};
-
 
 bool file_w(char* filename, int size, int* arr)
 {
@@ -150,7 +131,7 @@ bool file_string_w(char* filename, int size, char str[][6])
     {
         for (int i = 0; i < size; i++)
         {
-            fprintf(infile, " %s ", str[i]);
+            fprintf(infile, "%s\n", str[i]);
         }
         fclose(infile);
     }
@@ -171,9 +152,9 @@ bool file_string_r(char* filename, char str[][6])
 
     else
     {
-        char randomstr[6];
+        char randomstr[6] = { '\0', };
         int i = 0;
-        while (fscanf(infile, "%s", &str) == 1)
+        while (fscanf(infile, "%s", &randomstr) != EOF)
         {
             strcpy(str[i], randomstr);
             i++;
@@ -201,15 +182,6 @@ void printarridx(ARR* arr, int size)
 }
 
 void printarr_double(double* arr, int size)
-{
-    for (int i = 0; i < size; i++)
-    {
-        printf(" %lf ", arr[i]);
-    }
-    printf("\n\n");
-}
-
-void printarr_str(double* arr, int size)
 {
     for (int i = 0; i < size; i++)
     {
@@ -272,7 +244,6 @@ bool check_string_correct(char st[][6], int size)
         }
     }
 }
-
 
 
 /* Check stability of ascendingly ordering algorithm */
