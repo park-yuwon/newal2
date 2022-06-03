@@ -26,33 +26,14 @@ void swap_double(double* xp, double* yp)
 
 void merge(ARR* data, int p, int q, int r) {
     int i = p, j = q + 1, k = p;
-    ARR* tmp = data;
-    //ARR* tmp = (ARR*)malloc(sizeof(ARR)); // 새 배열
-    /*for (int m = 0; m < MAX_RAND_NUM; m++) {
-        tmp->idx[m] = m;
-    }*/
+    double tmp[MAX_RAND_NUM]; // 새 배열
     while (i <= q && j <= r) {
-        if (data->arr[i] <= data->arr[j]) {
-            tmp->idx[k] = data->idx[i];
-            tmp->arr[k++] = data->arr[i++];
-        }
-        else {
-            tmp->idx[k] = data->idx[j];
-            tmp->arr[k++] = data->arr[j++];
-        }
+        if (data->arr[i] <= data->arr[j]) tmp[k++] = data->arr[i++];
+        else tmp[k++] = data->arr[j++];
     }
-    while (i <= q) {
-        tmp->idx[k] = data->idx[i];
-        tmp->arr[k++] = data->arr[i++];
-    }
-    while (j <= r) {
-        tmp->idx[k] = data->idx[j];
-        tmp->arr[k++] = data->arr[j++];
-    }
-    for (int a = p; a <= r; a++) {
-        data->arr[a] = tmp->arr[a];
-        data->idx[a] = tmp->idx[a];
-    }
+    while (i <= q) tmp[k++] = data->arr[i++];
+    while (j <= r) tmp[k++] = data->arr[j++];
+    for (int a = p; a <= r; a++) data->arr[a] = tmp[a];
 }
 
 
@@ -69,35 +50,14 @@ void mergeSort(ARR* data, int p, int r) {
 
 void merge_double(DOUBLEARR* data, int p, int q, int r) {
     int i = p, j = q + 1, k = p;
-    DOUBLEARR* stmp = data;
-    /*DOUBLEARR* stmp = (DOUBLEARR*)malloc(sizeof(DOUBLEARR));
-    for (int m = 0; m < MAX_RAND_NUM; m++) {
-        stmp->idx[m] = m;
-    }*/
-    //double tmp[MAX_RAND_NUM]; // 새 배열
+    double tmp[MAX_RAND_NUM]; // 새 배열
     while (i <= q && j <= r) {
-        if (data->doublearr[i] <= data->doublearr[j]) {
-            stmp->idx[k] = data->idx[i];
-            stmp->doublearr[k++] = data->doublearr[i++];
-
-        }
-        else {
-            stmp->idx[k] = data->idx[j];
-            stmp->doublearr[k++] = data->doublearr[j++];
-        }
+        if (data->doublearr[i] <= data->doublearr[j]) tmp[k++] = data->doublearr[i++];
+        else tmp[k++] = data->doublearr[j++];
     }
-    while (i <= q) {
-        stmp->idx[k] = data->idx[i];
-        stmp->doublearr[k++] = data->doublearr[i++];
-    }
-    while (j <= r) {
-        stmp->idx[k] = data->idx[j];
-        stmp->doublearr[k++] = data->doublearr[j++];
-    }
-    for (int a = p; a <= r; a++) {
-        data->doublearr[a] = stmp->doublearr[a];
-        data->idx[a] = stmp->idx[a];
-    }
+    while (i <= q) tmp[k++] = data->doublearr[i++];
+    while (j <= r) tmp[k++] = data->doublearr[j++];
+    for (int a = p; a <= r; a++) data->doublearr[a] = tmp[a];
 }
 
 
@@ -111,35 +71,17 @@ void mergeSort_double(DOUBLEARR* data, int p, int r) {
     }
 }
 
-void Merge_string(char arr[][6], int low, int mid, int high) //Merging the Array Function
+void Merge_string(char arr[][6], int p, int mid, int high) //Merging the Array Function
 {
-    int nL = mid - low + 1;
-    int nR = high - mid;
-
-    char** L = (char**)malloc(sizeof(char*) * nL);
-    char** R = (char**)malloc(sizeof(char*) * nR);
-    int i;
-    for (i = 0; i < nL; i++)
-    {
-        L[i] = (char*)malloc(sizeof(arr[low + i]));
-        strcpy(L[i], arr[low + i]);
-    }
-    for (i = 0; i < nR; i++)
-    {
-        R[i] = (char*)malloc(sizeof(arr[mid + i + 1]));
-        strcpy(R[i], arr[mid + i + 1]);
-    }
-    int j = 0, k;
-    i = 0;
-    k = low;
-    while (i < nL && j < nR)
-    {
-        if (strcmp(L[i], R[j]) < 0)strcpy(arr[k++], L[i++]);
-        else strcpy(arr[k++], R[j++]);
-    }
-    while (i < nL)strcpy(arr[k++], L[i++]);
-    while (j < nR)strcpy(arr[k++], R[j++]);
-
+    //int i = p, j = q + 1, k = p;
+    //int tmp[MAX_RAND_NUM]; // 새 배열
+    //while (i <= q && j <= r) {
+    //    if (data[i] <= data[j]) tmp[k++] = data[i++];
+    //    else tmp[k++] = data[j++];
+    //}
+    //while (i <= q) tmp[k++] = data[i++];
+    //while (j <= r) tmp[k++] = data[j++];
+    //for (int a = p; a <= r; a++) data[a] = tmp[a];
 }
 
 
